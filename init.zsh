@@ -41,7 +41,7 @@ p6df::modules::1password::external::brew() {
 p6df::modules::1password::prompt::line() {
 
   local str
-  str="1password:\t  [$OP_ACCOUNT] [$OP_EMAIL] [$OP_VAULT_NAME]"
+  str="1password:\t  $OP_ACCOUNT/$OP_EMAIL/$OP_VAULT_NAME"
 
   p6_return_str "$str"
 }
