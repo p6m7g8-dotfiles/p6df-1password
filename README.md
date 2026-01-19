@@ -28,7 +28,7 @@
 
 - p6df::modules::1password::deps()
 - p6df::modules::1password::external::brew()
-- str str = p6df::modules::1password::prompt::line()
+- str str = p6df::modules::1password::prompt::mod()
 
 ## Hierarchy
 
