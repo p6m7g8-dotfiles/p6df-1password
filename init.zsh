@@ -58,3 +58,46 @@ p6df::modules::1password::prompt::mod() {
 
   p6_return_str "$str"
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::profile::on(account, vault_name)
+#
+#  Args:
+#	account -
+#	vault_name -
+#
+#  Environment:	 P6_DFZ_PROFILE_1PASSWORD
+#>
+######################################################################
+p6df::modules::1password::profile::on() {
+  local profile="$!"
+  local account="$2"
+  local vault_name="$3"
+
+  p6_env_export "P6_DFZ_PROFILE_1PASSWORD" "$profile"
+  p6_1password_account_signin "$account"
+  p6_1password_whoami_email
+  p6_1password_vault_select "$vault_name"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::profile::off()
+#
+#  Environment:	 OP_ACCOUNT OP_EMAIL OP_VAULT_NAME P6_DFZ_PROFILE_1PASSWORD
+#>
+######################################################################
+p6df::modules::1password::profile::off() {
+
+  p6_env_export_un P6_DFZ_PROFILE_1PASSWORD
+  p6_env_export_un OP_ACCOUNT
+  p6_env_export_un OP_EMAIL
+  p6_env_export_un OP_VAULT_NAME
+
+  p6_return_void
+}
