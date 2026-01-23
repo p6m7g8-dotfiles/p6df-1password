@@ -72,7 +72,7 @@ p6df::modules::1password::prompt::mod() {
 #>
 ######################################################################
 p6df::modules::1password::profile::on() {
-  local profile="$!"
+  local profile="$1"
   local account="$2"
   local vault_name="$3"
 
