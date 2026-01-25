@@ -62,9 +62,10 @@ p6df::modules::1password::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::1password::profile::on(account, vault_name)
+# Function: p6df::modules::1password::profile::on(profile, account, vault_name)
 #
 #  Args:
+#	profile -
 #	account -
 #	vault_name -
 #
