@@ -42,17 +42,17 @@ p6df::modules::1password::prompt::mod() {
 
   local str
 
-  if ! p6_string_blank "$P6_DFZ_PROFILE_1PASSWORD"; then
+  if p6_string_blank_NOT "$P6_DFZ_PROFILE_1PASSWORD"; then
     str="1password:\t  $P6_DFZ_PROFILE_1PASSWORD:"
   fi
 
-  if ! p6_string_blank "$OP_ACCOUNT"; then
+  if p6_string_blank_NOT "$OP_ACCOUNT"; then
     str=$(p6_string_append "$str" "$OP_ACCOUNT")
   fi
-  if ! p6_string_blank "$OP_EMAIL"; then
+  if p6_string_blank_NOT "$OP_EMAIL"; then
     str=$(p6_string_append "$str" "$OP_EMAIL" "/")
   fi
-  if ! p6_string_blank "$OP_VAULT_NAME"; then
+  if p6_string_blank_NOT "$OP_VAULT_NAME"; then
     str=$(p6_string_append "$str" "$OP_VAULT_NAME" "/")
   fi
 
