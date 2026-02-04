@@ -39,6 +39,10 @@ TODO: Add a short summary of this module.
 - `p6df::modules::1password::external::brew()`
 - `p6df::modules::1password::profile::off()`
 - `p6df::modules::1password::profile::on(profile, account, vault_name)`
+  - Args:
+    - profile - 
+    - account - 
+    - vault_name - 
 - `str str = p6df::modules::1password::prompt::mod()`
 
 ## Hierarchy
