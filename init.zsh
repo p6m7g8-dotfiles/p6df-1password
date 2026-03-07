@@ -102,3 +102,35 @@ p6df::modules::1password::profile::off() {
 
   p6_return_void
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::mcp()
+#
+#  Environment:	 HOME
+#>
+######################################################################
+p6df::modules::1password::mcp() {
+
+  p6df::core::path::if "$HOME/.config/op/plugins"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::mcp::env()
+#
+#  Environment:	 OP_SERVICE_ACCOUNT_TOKEN
+#>
+######################################################################
+p6df::modules::1password::mcp::env() {
+
+  if p6_string_blank "$OP_SERVICE_ACCOUNT_TOKEN"; then
+    p6_env_export_un "OP_SERVICE_ACCOUNT_TOKEN"
+  fi
+
+  p6_return_void
+}
