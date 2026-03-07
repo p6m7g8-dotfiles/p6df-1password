@@ -17,7 +17,9 @@
 
 ## Summary
 
-TODO: Add a short summary of this module.
+p6df module for 1Password: CLI tools (`op`, `1password-cli`), profile switching
+(`OP_ACCOUNT`, `OP_EMAIL`, `OP_VAULT_NAME`), and MCP server support via the op
+plugins directory (`$HOME/.config/op/plugins`) with `OP_SERVICE_ACCOUNT_TOKEN`.
 
 ## Contributing
 
@@ -37,12 +39,14 @@ TODO: Add a short summary of this module.
 
 - `p6df::modules::1password::deps()`
 - `p6df::modules::1password::external::brew()`
+- `p6df::modules::1password::mcp()`
+- `p6df::modules::1password::mcp::env()`
 - `p6df::modules::1password::profile::off()`
 - `p6df::modules::1password::profile::on(profile, account, vault_name)`
   - Args:
-    - profile - 
-    - account - 
-    - vault_name - 
+    - profile
+    - account
+    - vault_name
 - `str str = p6df::modules::1password::prompt::mod()`
 
 ## Hierarchy
