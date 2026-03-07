@@ -114,6 +114,7 @@ p6df::modules::1password::profile::off() {
 p6df::modules::1password::mcp() {
 
   p6df::core::path::if "$HOME/.config/op/plugins"
+  p6_js_npm_global_install "@takescake/1password-mcp"
 
   p6_return_void
 }
