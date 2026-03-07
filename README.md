@@ -18,8 +18,8 @@
 ## Summary
 
 p6df module for 1Password: CLI tools (`op`, `1password-cli`), profile switching
-(`OP_ACCOUNT`, `OP_EMAIL`, `OP_VAULT_NAME`), and MCP server support via the op
-plugins directory (`$HOME/.config/op/plugins`) with `OP_SERVICE_ACCOUNT_TOKEN`.
+(`OP_ACCOUNT`, `OP_EMAIL`, `OP_VAULT_NAME`), and MCP server support via op
+plugins directory and `@takescake/1password-mcp` with `OP_SERVICE_ACCOUNT_TOKEN`.
 
 ## Contributing
 
