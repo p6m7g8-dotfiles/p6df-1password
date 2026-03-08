@@ -62,25 +62,32 @@ p6df::modules::1password::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::1password::profile::on(profile, account, vault_name)
+# Function: p6df::modules::1password::profile::on(profile, account, vault_name, [op_service_account_token=])
 #
 #  Args:
 #	profile -
 #	account -
 #	vault_name -
+#	OPTIONAL op_service_account_token - []
 #
-#  Environment:	 P6_DFZ_PROFILE_1PASSWORD
+#  Environment:	 OP_SERVICE_ACCOUNT_TOKEN P6_DFZ_PROFILE_1PASSWORD
 #>
 ######################################################################
 p6df::modules::1password::profile::on() {
   local profile="$1"
   local account="$2"
   local vault_name="$3"
+  local op_service_account_token="${4:-}"
 
   p6_env_export "P6_DFZ_PROFILE_1PASSWORD" "$profile"
   p6_1password_account_signin "$account"
   p6_1password_whoami_email
   p6_1password_vault_select "$vault_name"
+
+  p6_env_export_un OP_SERVICE_ACCOUNT_TOKEN
+  if p6_string_blank_NOT "$op_service_account_token"; then
+    p6_env_export "OP_SERVICE_ACCOUNT_TOKEN" "$op_service_account_token"
+  fi
 
   p6_return_void
 }
@@ -90,7 +97,7 @@ p6df::modules::1password::profile::on() {
 #
 # Function: p6df::modules::1password::profile::off()
 #
-#  Environment:	 OP_ACCOUNT OP_EMAIL OP_VAULT_NAME P6_DFZ_PROFILE_1PASSWORD
+#  Environment:	 OP_ACCOUNT OP_EMAIL OP_SERVICE_ACCOUNT_TOKEN OP_VAULT_NAME P6_DFZ_PROFILE_1PASSWORD
 #>
 ######################################################################
 p6df::modules::1password::profile::off() {
@@ -98,6 +105,7 @@ p6df::modules::1password::profile::off() {
   p6_env_export_un P6_DFZ_PROFILE_1PASSWORD
   p6_env_export_un OP_ACCOUNT
   p6_env_export_un OP_EMAIL
+  p6_env_export_un OP_SERVICE_ACCOUNT_TOKEN
   p6_env_export_un OP_VAULT_NAME
 
   p6_return_void
@@ -115,23 +123,6 @@ p6df::modules::1password::mcp() {
 
   p6df::core::path::if "$HOME/.config/op/plugins"
   p6_js_npm_global_install "@takescake/1password-mcp"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::1password::mcp::env()
-#
-#  Environment:	 OP_SERVICE_ACCOUNT_TOKEN
-#>
-######################################################################
-p6df::modules::1password::mcp::env() {
-
-  if p6_string_blank "$OP_SERVICE_ACCOUNT_TOKEN"; then
-    p6_env_export_un "OP_SERVICE_ACCOUNT_TOKEN"
-  fi
 
   p6_return_void
 }
