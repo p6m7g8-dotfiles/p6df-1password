@@ -77,7 +77,6 @@ p6df::modules::1password::profile::on() {
   local profile="$1"
   local account="$2"
   local vault_name="$3"
-  local op_service_account_token="${4:-}"
 
   p6_env_export "P6_DFZ_PROFILE_1PASSWORD" "$profile"
   p6_1password_account_signin "$account"
@@ -85,9 +84,6 @@ p6df::modules::1password::profile::on() {
   p6_1password_vault_select "$vault_name"
 
   p6_env_export_un OP_SERVICE_ACCOUNT_TOKEN
-  if p6_string_blank_NOT "$op_service_account_token"; then
-    p6_env_export "OP_SERVICE_ACCOUNT_TOKEN" "$op_service_account_token"
-  fi
 
   p6_return_void
 }
@@ -123,6 +119,9 @@ p6df::modules::1password::mcp() {
 
   p6df::core::path::if "$HOME/.config/op/plugins"
   p6_js_npm_global_install "@takescake/1password-mcp"
+
+  p6df::modules::anthropic::mcp::server::add "1password" "npx" "-y" "@takescake/1password-mcp"
+  p6df::modules::openai::mcp::server::add "1password" "npx" "-y" "@takescake/1password-mcp"
 
   p6_return_void
 }
