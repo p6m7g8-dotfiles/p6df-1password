@@ -15,11 +15,11 @@ p6df::modules::1password::deps() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::1password::external::brew()
+# Function: p6df::modules::1password::external::brews()
 #
 #>
 ######################################################################
-p6df::modules::1password::external::brew() {
+p6df::modules::1password::external::brews() {
 
   p6df::core::homebrew::cli::brew::install 1password-cli
   p6df::core::homebrew::cli::brew::install 1password --cask
