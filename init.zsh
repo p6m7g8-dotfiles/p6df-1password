@@ -30,47 +30,13 @@ p6df::modules::1password::external::brews() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::1password::prompt::mod()
-#
-#  Returns:
-#	str - str
-#
-#  Environment:	 OP_ACCOUNT OP_EMAIL OP_VAULT_NAME P6_DFZ_PROFILE_1PASSWORD
-#>
-######################################################################
-p6df::modules::1password::prompt::mod() {
-
-  local str
-
-  if p6_string_blank_NOT "$P6_DFZ_PROFILE_1PASSWORD"; then
-    str="1password:\t  $P6_DFZ_PROFILE_1PASSWORD:"
-  fi
-
-  if p6_string_blank_NOT "$OP_ACCOUNT"; then
-    str=$(p6_string_append "$str" "$OP_ACCOUNT")
-  fi
-  if p6_string_blank_NOT "$OP_EMAIL"; then
-    str=$(p6_string_append "$str" "$OP_EMAIL" "/")
-  fi
-  if p6_string_blank_NOT "$OP_VAULT_NAME"; then
-    str=$(p6_string_append "$str" "$OP_VAULT_NAME" "/")
-  fi
-
-  p6_return_str "$str"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::1password::profile::on(profile, account, vault_name, [op_service_account_token=])
+# Function: p6df::modules::1password::profile::on(profile, account, vault_name)
 #
 #  Args:
 #	profile -
 #	account -
 #	vault_name -
-#	OPTIONAL op_service_account_token - []
 #
-#  Environment:	 OP_SERVICE_ACCOUNT_TOKEN P6_DFZ_PROFILE_1PASSWORD
 #>
 ######################################################################
 p6df::modules::1password::profile::on() {
@@ -78,12 +44,9 @@ p6df::modules::1password::profile::on() {
   local account="$2"
   local vault_name="$3"
 
-  p6_env_export "P6_DFZ_PROFILE_1PASSWORD" "$profile"
   p6_1password_account_signin "$account"
   p6_1password_whoami_email
   p6_1password_vault_select "$vault_name"
-
-  p6_env_export_un OP_SERVICE_ACCOUNT_TOKEN
 
   p6_return_void
 }
@@ -91,20 +54,17 @@ p6df::modules::1password::profile::on() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::1password::profile::off()
+# Function: words 1password = p6df::modules::1password::profile::mod()
 #
-#  Environment:	 OP_ACCOUNT OP_EMAIL OP_SERVICE_ACCOUNT_TOKEN OP_VAULT_NAME P6_DFZ_PROFILE_1PASSWORD
+#  Returns:
+#	words - 1password
+#
+#  Environment:	 OP_ACCOUNT OP_EMAIL OP_VAULT_NAME
 #>
 ######################################################################
-p6df::modules::1password::profile::off() {
+p6df::modules::1password::profile::mod() {
 
-  p6_env_export_un P6_DFZ_PROFILE_1PASSWORD
-  p6_env_export_un OP_ACCOUNT
-  p6_env_export_un OP_EMAIL
-  p6_env_export_un OP_SERVICE_ACCOUNT_TOKEN
-  p6_env_export_un OP_VAULT_NAME
-
-  p6_return_void
+  p6_return_words '1password' "$" "$" "$"
 }
 
 ######################################################################
