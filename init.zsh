@@ -64,7 +64,7 @@ p6df::modules::1password::profile::on() {
 ######################################################################
 p6df::modules::1password::profile::mod() {
 
-  p6_return_words '1password' '$OP_ACCOUNT' '$OP_EMAIL' '$OP_VAULT_NAME'
+  p6_return_words '1password' "$" "$" "$"
 }
 
 ######################################################################
