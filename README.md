@@ -17,9 +17,7 @@
 
 ## Summary
 
-Integrates 1Password CLI into the p6df shell framework. Provides profile-based account/vault
-switching, MCP server installation, and credential export (including `OP_SERVICE_ACCOUNT_TOKEN`)
-via `profile::on` / `profile::off`.
+TODO: Add a short summary of this module.
 
 ## Contributing
 
@@ -38,16 +36,14 @@ via `profile::on` / `profile::off`.
 ##### p6df-1password/init.zsh
 
 - `p6df::modules::1password::deps()`
-- `p6df::modules::1password::external::brew()`
+- `p6df::modules::1password::external::brews()`
 - `p6df::modules::1password::mcp()`
-- `p6df::modules::1password::profile::off()`
-- `p6df::modules::1password::profile::on(profile, account, vault_name, [op_service_account_token=])`
+- `p6df::modules::1password::profile::on(profile, account, vault_name)`
   - Args:
     - profile
     - account
     - vault_name
-    - OPTIONAL op_service_account_token - []
-- `str str = p6df::modules::1password::prompt::mod()`
+- `words 1password = p6df::modules::1password::profile::mod()`
 
 ## Hierarchy
 
