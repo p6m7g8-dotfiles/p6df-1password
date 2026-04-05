@@ -1,11 +1,23 @@
 # shellcheck shell=bash
 ######################################################################
+#<
+#
+# Function: p6df::modules::1password::deps()
+#
+#>
+######################################################################
 p6df::modules::1password::deps() {
   ModuleDeps=(
 	  p6m7g8-dotfiles/p61password
   )
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::external::brews()
+#
+#>
 ######################################################################
 p6df::modules::1password::external::brews() {
 
@@ -15,6 +27,13 @@ p6df::modules::1password::external::brews() {
   p6_return_void
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::mcp()
+#
+#  Environment:	 HOME
+#>
 ######################################################################
 p6df::modules::1password::mcp() {
 
@@ -26,6 +45,17 @@ p6df::modules::1password::mcp() {
 
   p6_return_void
 }
+######################################################################
+#<
+#
+# Function: p6df::modules::1password::profile::on(profile, account, vault_name)
+#
+#  Args:
+#	profile -
+#	account -
+#	vault_name -
+#
+#>
 ######################################################################
 p6df::modules::1password::profile::on() {
   local profile="$1"
@@ -40,35 +70,6 @@ p6df::modules::1password::profile::on() {
 }
 
 ######################################################################
-p6df::modules::1password::profile::mod() {
-
-  p6_return_words '1password' '$OP_ACCOUNT' '$OP_EMAIL' '$OP_VAULT_NAME'
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::1password::deps()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::1password::external::brews()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::1password::profile::on(profile, account, vault_name)
-#
-#  Args:
-#	profile -
-#	account -
-#	vault_name -
-#
-#>
-######################################################################
 #<
 #
 # Function: words 1password = p6df::modules::1password::profile::mod()
@@ -79,9 +80,8 @@ p6df::modules::1password::profile::mod() {
 #  Environment:	 OP_ACCOUNT OP_EMAIL OP_VAULT_NAME
 #>
 ######################################################################
-#<
-#
-# Function: p6df::modules::1password::mcp()
-#
-#  Environment:	 HOME
-#>
+p6df::modules::1password::profile::mod() {
+
+  p6_return_words '1password' '$OP_ACCOUNT' '$OP_EMAIL' '$OP_VAULT_NAME'
+}
+
